@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ItemRepo from '../../components/ItemRepo';
 import api from '../../services/api';
 import Styles from './styles';
+import { useNetInfo } from '@react-native-community/netinfo';
 
 export default function Home(){
 
@@ -11,9 +12,10 @@ export default function Home(){
     const [nextPage, setNextPage] = useState(0)
     const [finalList, setFinalList] = useState(false)
     const [error, setError] = useState(false)
+    const netInfo = useNetInfo();
 
     function readRepositories() {
-        if(input != ""){
+        if(input != "" && netInfo.isConnected){
             setError(false)
             setLoading(true)
             setData([])
@@ -85,6 +87,12 @@ export default function Home(){
                     onBlur={() => {readRepositories()}}
                 />
             </Styles.InputView>
+            
+            {!netInfo.isConnected
+                ? <Styles.NoConnection>Sem conexão com a internet!</Styles.NoConnection>
+                : false
+            }
+            
             <Styles.List
                 data={data}
                 keyExtractor={data => data.id}

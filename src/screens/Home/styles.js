@@ -73,12 +73,13 @@ export  default Styles = {
     NoConnection: styled.Text`
         font-family: 'SF Pro Text';
         font-style: normal;
-        font-weight: 400;
+        font-weight: 500;
         font-size: 14px;
         line-height: 24px;
         color: ${colors.subtitle};
-        max-width: 155px;
+        width: 100%;
+        text-align: center;
 
     `
-    
+
 }
