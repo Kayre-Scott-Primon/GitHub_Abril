@@ -3,13 +3,13 @@ import ItemRepo from '../../components/ItemRepo';
 import api from '../../services/api';
 import Styles from './styles';
 
-
 export default function Home(){
 
     const [data, setData] = useState([])
     const [input, setInput] = useState("")
     const [loading, setLoading] = useState(false)
     const [nextPage, setNextPage] = useState(0)
+    const [finalList, setFinalList] = useState(false)
 
     function readRepositories() {
         setLoading(true)
@@ -18,8 +18,12 @@ export default function Home(){
 
         api.get(`search/repositories?q=${input}&per_page=10`).then(response => {
             setData(response.data.items)
-            console.log(response.data.total_count)
-            setNextPage(2) 
+            if(response.data.items.length < 10){
+                setFinalList(true)
+                console.log('finalList')
+            }else{
+                setNextPage(2) 
+            }
         }).catch(e => {
             console.log('erro ' + e)
         }).finally(() => {
@@ -28,27 +32,35 @@ export default function Home(){
     }
 
     function readMoreRepositories(){
-        setLoading(true)
-        api.get(`search/repositories?q=${input}&per_page=10&page=${nextPage}`).then(response => {
-            response.data.items.forEach(element => {
-                let exist = false
-                data.some(obj => { // necessário porque a API estava enviando mesmos id's
-                    if(obj.id != element.id){
-                        return false
-                    }else {
-                        exist = true
-                        return true
-                    }
-                })
-                !exist ? data.push(element) : false 
-            });
-            setData(data)
-                setNextPage(nextPage + 1)
-        }).catch(e => {
-            console.log('erro ' + e)
-        }).finally(() => {
-            setLoading(false)
-        })
+        if(!finalList){
+            setLoading(true)
+            api.get(`search/repositories?q=${input}&per_page=10&page=${nextPage}`).then(response => {
+                response.data.items.forEach(element => {
+                    let exist = false
+                    data.some(obj => { // necessário porque a API estava enviando mesmos id's
+                        if(obj.id != element.id){
+                            return false
+                        }else {
+                            exist = true
+                            return true
+                        }
+                    })
+                    !exist ? data.push(element) : false 
+                });
+                setData(data)
+                console.log(response.data.items.length)            
+                if(response.data.items.length < 10){
+                    setFinalList(true)
+                    console.log('finalList')
+                }else{
+                    setNextPage(nextPage + 1)
+                }
+            }).catch(e => {
+                console.log('erro ' + e)
+            }).finally(() => {
+                setLoading(false)
+            })
+        }
     }
 
     return (
