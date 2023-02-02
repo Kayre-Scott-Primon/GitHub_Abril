@@ -1,18 +1,40 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { setRespository } from '../../storage/redux/repositorySlice';
 import Styles from './styles';
 
-export default function ItemRepo() {
+export default function ItemRepo({data}) {
+
+    const dispatch = useDispatch()
+    const navigation = useNavigation()
+
+    async function onPressRepo(){
+        const repo = {
+            title: data.name,
+            url: data.html_url,
+            owner: data.owner.login,
+            stars: data.stargazers_count
+        }
+        await dispatch(setRespository(repo))
+        navigation.navigate('Repository')
+    }
 
     return (
-        <Styles.Container>
+        <Styles.Container
+            onPress={onPressRepo}
+        >
             <Styles.ContainerAvatarTitle>
-                <Styles.Avatar/>
+                <Styles.Avatar     
+                    source={{
+                        uri: data.owner.avatar_url,
+                    }}/>
                 <Styles.TitleContainer>
-                    <Styles.Title>{'{Nome do Repo}'}</Styles.Title>
-                    <Styles.Subtitle>{'{Nome do owner}'}</Styles.Subtitle>
+                    <Styles.Title>{data.name}</Styles.Title>
+                    <Styles.Subtitle>{data.owner.login}</Styles.Subtitle>
                 </Styles.TitleContainer>
             </Styles.ContainerAvatarTitle>
-            <Styles.NumOfStar>{'{Número de estrelas}'}</Styles.NumOfStar>
+            <Styles.NumOfStar>{data.stargazers_count}</Styles.NumOfStar>
         </Styles.Container>
     )
 }

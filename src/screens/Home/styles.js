@@ -7,7 +7,7 @@ export  default Styles = {
         width: 100%;
         height: 100%;
         background-color: white;
-        padding: 16px;
+        padding: 16px 16px 0px 16px;
     `,
 
     StatusBar: styled.StatusBar.attrs({
@@ -49,9 +49,22 @@ export  default Styles = {
 
     Input: styled.TextInput.attrs({
         placeholder: 'Busca por repositórios',
-        textAlign: 'center',
         placeholderTextColor: colors.search,
+        enterKeyHint: 'search'
     })`
+    `,
+
+    List: styled.FlatList.attrs({})`
+        
+    `,
+
+    Divider: styled.View`
+        width: 100%;
+        height: 1px;
+        background: #EBEBEB;
+        border-radius: 2px;
+        margin-top: 12px;
+        margin-bottom: 10px;
     `,
 
 

@@ -3,7 +3,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { colors } from '../../styles/colors';
 
 export  default Styles = {
-    Container: styled.SafeAreaView`
+    Container: styled.TouchableOpacity`
         width: 100%;
         background-color: white;
         flex-direction: row;
@@ -15,7 +15,7 @@ export  default Styles = {
     
     `,
 
-    Avatar: styled.View`
+    Avatar: styled.Image`
         width: 52px;
         height: 52px;
         background: ${colors.avatar};

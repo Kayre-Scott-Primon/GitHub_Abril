@@ -1,10 +1,23 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Header from '../../components/Header';
+import { resetRepository } from '../../storage/redux/repositorySlice';
+import Styles from './styles';
 
-// import { Container } from './styles';
+export default function Repository() {
 
-const Repository = () => {
-  return <View />;
+  const dispatch = useDispatch()
+  const repository = useSelector(state => state.repository)
+
+  useEffect(() => {
+    return () => {dispatch(resetRepository())}
+  },[])
+
+  return (
+    <Styles.Container>
+      <Styles.StatusBar/>
+      <Header title={repository.title}/>
+      <Styles.Web source={{ uri: repository.url }}/>
+    </Styles.Container>
+  );
 }
-
-export default Repository;
