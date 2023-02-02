@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Keyboard } from 'react-native';
 import ItemRepo from '../../components/ItemRepo';
 import api from '../../services/api';
 import Styles from './styles';
@@ -14,28 +13,39 @@ export default function Home(){
 
     function readRepositories() {
         setLoading(true)
+        setData([])
+        setFinalList(false)
+
         api.get(`search/repositories?q=${input}&per_page=10`).then(response => {
             setData(response.data.items)
-            setNextPage(2)
+            console.log(response.data.total_count)
+            setNextPage(2) 
         }).catch(e => {
-            console.log('erro' + e)
+            console.log('erro ' + e)
         }).finally(() => {
             setLoading(false)
         })
     }
 
     function readMoreRepositories(){
-        console.log(nextPage)
         setLoading(true)
         api.get(`search/repositories?q=${input}&per_page=10&page=${nextPage}`).then(response => {
             response.data.items.forEach(element => {
-                data.push(element)
+                let exist = false
+                data.some(obj => { // necessário porque a API estava enviando mesmos id's
+                    if(obj.id != element.id){
+                        return false
+                    }else {
+                        exist = true
+                        return true
+                    }
+                })
+                !exist ? data.push(element) : false 
             });
             setData(data)
-            console.log('count more', response.data.items.length)
-            setNextPage(nextPage + 1)
+                setNextPage(nextPage + 1)
         }).catch(e => {
-            console.log('erro' + e)
+            console.log('erro ' + e)
         }).finally(() => {
             setLoading(false)
         })
@@ -50,7 +60,6 @@ export default function Home(){
                 <Styles.Input
                     value={input} 
                     onChangeText={input => setInput(input)}
-                    onSubmitEditing={() => {readRepositories()}}
                     onBlur={() => {readRepositories()}}
                 />
             </Styles.InputView>
@@ -63,9 +72,8 @@ export default function Home(){
                 ItemSeparatorComponent={<Styles.Divider/>}
                 refreshing={loading}
                 onRefresh={() => readRepositories()}                                        
-                onEndReachedThreshold={0.15}
+                onEndReachedThreshold={0.2}
                 onEndReached={() => readMoreRepositories()}
-                
             />
         </Styles.Container>
     )
