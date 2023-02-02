@@ -33,10 +33,11 @@ export  default Styles = {
         align-items: center;
         gap: 6px;
         width: 100%;
-        height: 36px;
         background: ${colors.background};
         border-radius: 10px;
         margin-bottom: 41px;
+        border-width: 1px;
+        border-color: ${(props) => props.empty ? colors.error : colors.transparent};
     `,
 
     InputIcon: styled(Icon).attrs({
@@ -45,6 +46,7 @@ export  default Styles = {
         color: ${colors.search};
         font-size: 15px;
         margin: 10.11px 6px 10.11px 8px;
+        
     `,
 
     Input: styled.TextInput.attrs({
@@ -52,6 +54,7 @@ export  default Styles = {
         placeholderTextColor: colors.search,
         enterKeyHint: 'search'
     })`
+        max-height: 37px;
     `,
 
     List: styled.FlatList.attrs({})`
@@ -67,5 +70,15 @@ export  default Styles = {
         margin-bottom: 10px;
     `,
 
+    NoConnection: styled.Text`
+        font-family: 'SF Pro Text';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        color: ${colors.subtitle};
+        max-width: 155px;
 
+    `
+    
 }

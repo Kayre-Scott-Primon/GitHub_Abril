@@ -5,5 +5,7 @@ export const colors = {
     search: 'rgba(60, 60, 67, 0.6)',
     avatar: '#D9D9D9',
     subtitle: '#48484A',
-    icon: '#0A84FF'
+    icon: '#0A84FF',
+    error: '#f00',
+    transparent: 'rgba(255,255,255,0)'
 }

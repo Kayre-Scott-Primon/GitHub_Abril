@@ -12,7 +12,7 @@ export  default Styles = {
 
     ContainerAvatarTitle: styled.View`
         flex-direction: row;
-    
+        flex: 8;
     `,
 
     Avatar: styled.Image`
@@ -24,10 +24,13 @@ export  default Styles = {
     `,
 
     TitleContainer: styled.View`
-    
+        flex: 1;
+        margin-right: 5px;
     `,
 
-    Title: styled.Text`
+    Title: styled.Text.attrs({
+        numberOfLines: 1
+    })`
         font-family: 'SF Pro Text';
         font-style: normal;
         font-weight: 600;
@@ -38,7 +41,9 @@ export  default Styles = {
         margin-bottom: 1px;
     `,
 
-    Subtitle: styled.Text`
+    Subtitle: styled.Text.attrs({
+        numberOfLines: 1
+    })`
         font-family: 'SF Pro Text';
         font-style: normal;
         font-weight: 400;
@@ -55,6 +60,7 @@ export  default Styles = {
         line-height: 18px;
         letter-spacing: -0.078px;
         color: ${colors.subtitle};
+        flex: 1;
     `
 
 }

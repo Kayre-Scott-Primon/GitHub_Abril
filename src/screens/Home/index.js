@@ -10,25 +10,32 @@ export default function Home(){
     const [loading, setLoading] = useState(false)
     const [nextPage, setNextPage] = useState(0)
     const [finalList, setFinalList] = useState(false)
+    const [error, setError] = useState(false)
 
     function readRepositories() {
-        setLoading(true)
-        setData([])
-        setFinalList(false)
+        if(input != ""){
+            setError(false)
+            setLoading(true)
+            setData([])
+            setFinalList(false)
 
-        api.get(`search/repositories?q=${input}&per_page=10`).then(response => {
-            setData(response.data.items)
-            if(response.data.items.length < 10){
-                setFinalList(true)
-                console.log('finalList')
-            }else{
-                setNextPage(2) 
-            }
-        }).catch(e => {
-            console.log('erro ' + e)
-        }).finally(() => {
-            setLoading(false)
-        })
+            api.get(`search/repositories?q=${input}&per_page=10`).then(response => {
+                setData(response.data.items)
+                if(response.data.items.length < 10){
+                    setFinalList(true)
+                    console.log('finalList')
+                }else{
+                    setNextPage(2) 
+                }
+            }).catch(e => {
+                console.log('erro ' + e)
+            }).finally(() => {
+                setLoading(false)
+            })
+        }else {
+            setError(true)
+            setData([])
+        }
     }
 
     function readMoreRepositories(){
@@ -67,11 +74,14 @@ export default function Home(){
         <Styles.Container>
             <Styles.StatusBar/>
             <Styles.Title>Repositórios</Styles.Title>
-            <Styles.InputView>
+            <Styles.InputView empty={error}>
                 <Styles.InputIcon/>
                 <Styles.Input
                     value={input} 
-                    onChangeText={input => setInput(input)}
+                    onChangeText={input => {
+                        setInput(input)
+                        setError(false)
+                    }}
                     onBlur={() => {readRepositories()}}
                 />
             </Styles.InputView>
