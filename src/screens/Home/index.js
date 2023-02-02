@@ -1,11 +1,19 @@
 import React from 'react';
-import { View } from 'react-native';
+import ItemRepo from '../../components/ItemRepo';
+import Styles from './styles';
 
-// import { Container } from './styles';
 
 export default function Home(){
 
     return (
-        <View/>
+        <Styles.Container>
+            <Styles.StatusBar/>
+            <Styles.Title>Repositórios</Styles.Title>
+            <Styles.InputView>
+                <Styles.InputIcon/>
+                <Styles.Input/>
+            </Styles.InputView>
+            <ItemRepo/>
+        </Styles.Container>
     )
 }
