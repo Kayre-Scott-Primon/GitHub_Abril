@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header';
-import { resetRepository } from '../../storage/redux/reducer/Repository';
+import { resetRepository } from '../../storage/redux/reducer/repositorySlice';
 import Styles from './styles';
 
 export default function Repository() {

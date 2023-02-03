@@ -25,7 +25,6 @@ export default function Home(){
                 setData(response.data.items)
                 if(response.data.items.length < 10){
                     setFinalList(true)
-                    console.log('finalList')
                 }else{
                     setNextPage(2) 
                 }
@@ -56,11 +55,9 @@ export default function Home(){
                     })
                     !exist ? data.push(element) : false 
                 });
-                setData(data)
-                console.log(response.data.items.length)            
+                setData(data)            
                 if(response.data.items.length < 10){
                     setFinalList(true)
-                    console.log('finalList')
                 }else{
                     setNextPage(nextPage + 1)
                 }

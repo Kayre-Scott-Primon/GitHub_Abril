@@ -1,7 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setRespository } from '../../storage/redux/reducer/Repository';
 import Styles from './styles';
 
 export default function ItemRepo({data}) {
@@ -10,13 +9,7 @@ export default function ItemRepo({data}) {
     const navigation = useNavigation()
 
     async function onPressRepo(){
-        const repo = {
-            title: data.name,
-            url: data.html_url,
-            owner: data.owner.login,
-            stars: data.stargazers_count
-        }
-        await dispatch(setRespository(repo))
+        dispatch({ type: 'REPOSITORY_SAGA_SUCCESS', payload: {owner: data.owner.login, name: data.name} })
         navigation.navigate('Repository')
     }
 
