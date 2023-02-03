@@ -17,6 +17,7 @@ export  default Styles = {
     `,
 
     Web: styled(WebView)`
+    background-color: ${colors.avatar};
     `
 
 }

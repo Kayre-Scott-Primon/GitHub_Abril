@@ -100,6 +100,7 @@ export default function Home() {
         onRefresh={() => readRepositories()}
         onEndReachedThreshold={0.25}
         onEndReached={() => readMoreRepositories()}
+        showsVerticalScrollIndicator={false}
       />
     </Styles.Container>
   )
