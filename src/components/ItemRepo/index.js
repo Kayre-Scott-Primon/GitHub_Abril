@@ -1,8 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setRespository } from '../../storage/redux/repositorySlice';
+import { setRespository } from '../../storage/redux/reducer/repositorySlice';
 import Styles from './styles';
+import { sagaActions } from '../../storage/redux/saga/sagaActions';
 
 export default function ItemRepo({data}) {
 
@@ -16,7 +17,8 @@ export default function ItemRepo({data}) {
             owner: data.owner.login,
             stars: data.stargazers_count
         }
-        await dispatch(setRespository(repo))
+        //await dispatch(setRespository(repo))
+        dispatch({ type: sagaActions.REPOSITORY_SAGA_FAILED, term : 'react'})
         navigation.navigate('Repository')
     }
 
