@@ -19,25 +19,6 @@ jest.mock("@react-navigation/native", () => {
 
 describe('ItemRepoSnapshot', () => {
 
-  // genarate snapshot file
-    /*it('renders correctly when there are no items', () => {
-      const tree = renderer.create(            
-        <Provider store={store}>
-          <ItemRepo
-              data={{
-                  name: 'name',
-                  url: 'url',
-                  owner: {
-                      login: 'user'
-                  },
-                  stargazers_count: 0
-              }}
-          />
-        </Provider>
-      ).toJSON();
-      expect(tree).toMatchSnapshot();
-    });*/
-
     it('Verificando igualdade na estilização', () => {
       const tree = renderer.create(
         <Provider store={store}>
@@ -53,6 +34,7 @@ describe('ItemRepoSnapshot', () => {
           />
         </Provider>
       ).toJSON();
+
       expect(tree).toMatchSnapshot();
     });
 
