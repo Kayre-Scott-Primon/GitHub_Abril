@@ -23,7 +23,9 @@ export  default Styles = {
         margin-right: 14.29px;
     `,
 
-    Title: styled.Text`
+    Title: styled.Text.attrs({
+        numberOfLines: 1
+    })`
         font-family: 'SF Pro Text';
         font-style: normal;
         font-weight: 600;
@@ -31,6 +33,8 @@ export  default Styles = {
         line-height: 24px;
         letter-spacing: -0.38px;
         color: ${colors.text};
+        flex: 1;
+        margin-right: 25px;
     `,
 
 }

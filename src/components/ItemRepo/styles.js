@@ -50,7 +50,9 @@ export  default Styles = {
         color: ${colors.subtitle};
     `,
 
-    NumOfStar: styled.Text`
+    NumOfStar: styled.Text.attrs({
+        numberOfLines: 1
+    })`
         font-family: 'SF Pro Text';
         font-style: normal;
         font-weight: 400;
@@ -58,7 +60,9 @@ export  default Styles = {
         line-height: 18px;
         letter-spacing: -0.078px;
         color: ${colors.subtitle};
-        flex: 1;
+        flex: 2;
+        text-align: right;
+        margin-right: 4px;
     `
 
 }
