@@ -30,7 +30,7 @@ export default function Home(){
                     setNextPage(2) 
                 }
             }).catch(e => {
-                console.log('erro ' + e)
+                console.log('erro 01 ' + e)
             }).finally(() => {
                 setLoading(false)
             })
@@ -65,7 +65,7 @@ export default function Home(){
                     setNextPage(nextPage + 1)
                 }
             }).catch(e => {
-                console.log('erro ' + e)
+                console.log('erro 02 ' + e)
             }).finally(() => {
                 setLoading(false)
             })
@@ -102,7 +102,7 @@ export default function Home(){
                 ItemSeparatorComponent={<Styles.Divider/>}
                 refreshing={loading}
                 onRefresh={() => readRepositories()}                                        
-                onEndReachedThreshold={0.2}
+                onEndReachedThreshold={0.25}
                 onEndReached={() => readMoreRepositories()}
             />
         </Styles.Container>

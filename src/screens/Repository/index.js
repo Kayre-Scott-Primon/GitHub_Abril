@@ -16,8 +16,8 @@ export default function Repository() {
   return (
     <Styles.Container>
       <Styles.StatusBar/>
-      <Header title={repository.title}/>
-      <Styles.Web source={{ uri: repository.url }}/>
+      <Header testID='title' title={repository.title}/>
+      <Styles.Web testID='urlRepo'  source={{ uri: repository.url }}/>
     </Styles.Container>
   );
 }

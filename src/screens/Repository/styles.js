@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { WebView } from 'react-native-webview';
 import { colors } from '../../styles/colors';
 

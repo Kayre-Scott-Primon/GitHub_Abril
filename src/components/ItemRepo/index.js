@@ -26,15 +26,16 @@ export default function ItemRepo({data}) {
         >
             <Styles.ContainerAvatarTitle>
                 <Styles.Avatar     
+                    testID='avatar'
                     source={{
                         uri: data.owner.avatar_url,
                     }}/>
                 <Styles.TitleContainer>
-                    <Styles.Title>{data.name}</Styles.Title>
-                    <Styles.Subtitle>{data.owner.login}</Styles.Subtitle>
+                    <Styles.Title testID='name'>{data.name}</Styles.Title>
+                    <Styles.Subtitle testID='owner'>{data.owner.login}</Styles.Subtitle>
                 </Styles.TitleContainer>
             </Styles.ContainerAvatarTitle>
-            <Styles.NumOfStar>{data.stargazers_count}</Styles.NumOfStar>
+            <Styles.NumOfStar testID='stars'>{data.stargazers_count}</Styles.NumOfStar>
         </Styles.Container>
     )
 }

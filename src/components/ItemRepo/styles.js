@@ -1,11 +1,9 @@
-import styled from 'styled-components';
-import Icon from 'react-native-vector-icons/Feather';
+import styled from 'styled-components/native';
 import { colors } from '../../styles/colors';
 
 export  default Styles = {
     Container: styled.TouchableOpacity`
         width: 100%;
-        background-color: white;
         flex-direction: row;
         justify-content: space-between;
     `,

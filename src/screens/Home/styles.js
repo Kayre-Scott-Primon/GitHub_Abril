@@ -58,7 +58,6 @@ export  default Styles = {
     `,
 
     List: styled.FlatList.attrs({})`
-        
     `,
 
     Divider: styled.View`
