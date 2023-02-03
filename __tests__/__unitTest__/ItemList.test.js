@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react-native";
 import ItemRepo from '../../src/components/ItemRepo'
 import { Provider } from "react-redux";
-import store from "../../src/storage/redux/store";
+import store from "../../src/storage/redux";
 
 const mockedDispatch = jest.fn();
 

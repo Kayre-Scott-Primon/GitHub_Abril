@@ -1,7 +1,7 @@
 import React from "react";
 import Routes from './routes';
 import { Provider } from "react-redux";
-import store from "./storage/redux/store";
+import store from "./storage/redux";
 
 const App = () => (
       <Provider store={store}>

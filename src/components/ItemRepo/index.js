@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setRespository } from '../../storage/redux/repositorySlice';
+import { setRespository } from '../../storage/redux/reducer/Repository';
 import Styles from './styles';
 
 export default function ItemRepo({data}) {
