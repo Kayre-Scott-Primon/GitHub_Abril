@@ -1,8 +1,8 @@
-import { call, takeEvery, put } from 'redux-saga/effects'
-import { setRespository, setRespositoryNotFound } from '../reducer/repositorySlice'
-import api from '../../../services/api'
+import api from '../../../services/api';
+import { call, takeEvery, put } from 'redux-saga/effects';
+import { setRespository, setRespositoryNotFound } from '../reducer/repositorySlice';
 
-function callApi(data){
+function callApi(data) {
   return api.get(`repos/${data.owner}/${data.name}`)
 }
 
@@ -14,7 +14,7 @@ export function* getRepositorySaga(action) {
       url: result.data.html_url,
       owner: result.data.owner.login,
       stars: result.data.stargazers_count
-  }))
+    }))
   } catch (e) {
     yield put(setRespositoryNotFound())
   }

@@ -1,12 +1,12 @@
+import { colors } from '../../styles/colors';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Feather';
-import { colors } from '../../styles/colors';
 
 export  default Styles = {
     Container: styled.SafeAreaView`
         width: 100%;
         height: 100%;
-        background-color: white;
+        background-color: ${colors.primary};
         padding: 16px 16px 0px 16px;
     `,
 
