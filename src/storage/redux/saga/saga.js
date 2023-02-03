@@ -1,5 +1,5 @@
 import { call, takeEvery, put } from 'redux-saga/effects'
-import { setRespository } from '../reducer/repositorySlice'
+import { setRespository, setRespositoryNotFound } from '../reducer/repositorySlice'
 import api from '../../../services/api'
 
 function callApi(data){
@@ -16,7 +16,7 @@ export function* getRepositorySaga(action) {
       stars: result.data.stargazers_count
   }))
   } catch (e) {
-    //yield put({ type: 'REPOSITORY_SAGA_FAILED', payload: {owner: '', name: ''} })
+    yield put(setRespositoryNotFound())
   }
 }
 export default function* rootSaga() {

@@ -18,6 +18,15 @@ export const slice = createSlice({
                 stars: payload.stars
             }
         },
+        setRespositoryNotFound(state) {
+            return {
+                ...state,
+                title: 'Não encontrado',
+                url: '',
+                owner: '-',
+                stars: '-'
+            }
+        },
         resetRepository(state) {
             return {
                 ...state,
@@ -32,7 +41,8 @@ export const slice = createSlice({
 
 export const {
     setRespository,
-    resetRepository
+    resetRepository,
+    setRespositoryNotFound
 } = slice.actions
 
 export const repository = state => state.repository
